@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Philly CheeseSteaks</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="icons/steakimage.png" />
+  <link href="style/main.css" rel="stylesheet" />
+  <link href="style/dropDown.css" rel="stylesheet" />
+  <link href="style/myDropDown.css" rel="stylesheet" />
+  <link href="style/review.css" rel="stylesheet" />
+  <link href="style/employee.css" rel="stylesheet" />
+  <link href="style/loginout.css" rel="stylesheet" />
+
+  <!-- React 18 UMD -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Babel for JSX-in-browser (dev only) -->
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+  <!-- React Router (UMD) -->
+  <script src="https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- Slide-out panel and map containers -->
+  <div id="panel"></div>
+  <div id="map"></div>
+
+  <!-- Plain JS (no JSX) -->
+  <script src="_JS_reusable/dropDownFW.js"></script>
+
+  <!-- Shared API client (must expose window.api = {...}) -->
+  <script src="_JS_reusable/api.js"></script>
+
+  <!-- React reusable (JSX) -->
+  <script type="text/babel" src="_React_reusable/ConvertEle.js"></script>
+  <script type="text/babel" src="_React_reusable/Location.js"></script>
+
+  <!-- React CGFs (JSX) -->
+  <script type="text/babel" src="_React_CGF/Review.js"></script>
+  <script type="text/babel" src="_React_CGF/Home.js"></script>
+  <script type="text/babel" src="_React_CGF/Profile.js"></script>
+  <script type="text/babel" src="_React_CGF/Rewards.js"></script>
+  <script type="text/babel" src="_React_CGF/LogInOut.js"></script>
+
+  <!-- App boot (JSX) -->
+  <script type="text/babel">
+    "use strict";
+
+    // initialize dropdowns
+    dropDownFW({
+      dropHeaderClass: "dropHeader",
+      dropContentClass: "dropContent",
+      showClass: "show",
+      hideClass: "hide"
+    });
+
+    const { Link, Route, HashRouter } = ReactRouterDOM;
+
+    const App = () => (
+      <HashRouter>
+        <div id="titleNav">
+          <div id="title">Find Philly Food</div>
+
+          <div id="nav">
+            <div className="dropDown">
+              <Link to="/home">Home</Link>
+            </div>
+
+            <div className="dropDown">
+              <Link to="/review">Reviews</Link>
+            </div>
+
+            <div className="dropDown">
+              <div className="dropHeader">Account</div>
+              <div className="dropContent">
+                <Link to="/profile">Profile</Link><br />
+                <Link to="/rewards">Rewards</Link><br />
+                <Link to="/loginout">Log In/Out</Link><br />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="content">
+          <Route path="/" exact component={Home} />
+          <Route path="/home" component={Home} />
+          <Route path="/review" component={Review} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/rewards" component={Rewards} />
+          <Route path="/loginout" component={LogInOut} />
+        </div>
+
+        <div id="footer">
+          [Nick Johns - www.linkedin.com/in/nick-paul-johns | Gaurab Ghimire - https://www.linkedin.com/in/gaurabghimire/]
+        </div>
+      </HashRouter>
+    );
+
+    // React 18 render API
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+
+    // If you load Google Maps with callback=initMap, ensure Home.js sets:
+    // window.initMap = () => initMap(document.querySelector('.map-placeholder') || document.getElementById('map'));
+  </script>
+
+  <!-- Google Maps: replace YOUR_GOOGLE_MAPS_KEY and ensure window.initMap is defined before this runs -->
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_KEY&libraries=places&callback=initMap">
+  </script>
+</body>
+</html>

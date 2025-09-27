@@ -1,0 +1,229 @@
+/* ================================
+   Global & Base Styles
+   ================================ */
+body { 
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2f2f2;
+    color: #222;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* ================================
+   Header & Nav Container
+   ================================ */
+#titleNav {  
+    background-image: url('https://www.shutterstock.com/image-vector/philadelphia-city-skyline-horizontal-banner-260nw-1253299234.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    color: white;
+}
+
+#title {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+#nav {
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+/* ================================
+   Main Content & Home Page
+   ================================ */
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Map container styling */
+.map-placeholder {
+    width: 90%;
+    max-width: 800px;
+    height: 400px;        /* must be explicit for Google Maps */
+    margin-bottom: 1.5rem;
+    border: 2px solid #444;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Make sure the Google map canvas fills the box */
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* ================================
+   Nav Links
+   ================================ */
+#nav a {
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.25rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+#nav a:hover, #nav a:focus {
+    background-color: #505050;
+    color: #fff;
+    outline: none;
+}
+
+/* ================================
+   DropDown Integration
+   ================================ */
+.navBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0.25rem 0;
+    font-size: 0.95rem;
+}
+
+.dropDown {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dropHeader {
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    color: #fff;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropHeader:hover, .dropHeader:focus {
+    background-color: #606060;
+}
+
+.dropDown.active .dropHeader {
+    background-color: #4b4bff;
+    color: #fff;
+}
+
+.dropContent {
+    font-size: 0.85rem;
+    line-height: 1.3rem;
+    margin-top: 0.3rem;
+    padding: 0.4rem 0.6rem;
+    background-color: #333;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 10rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.5rem);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2000;
+}
+
+.dropContent a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: #f0f0f0;
+    border-radius: 0.25rem;
+    transition: background 0.2s ease;
+}
+
+.dropContent a:hover, .dropContent a:focus {
+    background-color: #555;
+    color: #fff;
+    outline: none;
+}
+
+.dropDown .show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropDown .hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.5rem);
+}
+
+/* ================================
+   Footer
+   ================================ */
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+    background-color: #fefefe;
+    box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
+}
+
+/* ================================
+   Responsive Adjustments
+   ================================ */
+@media (min-width: 38rem) {
+    #titleNav {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.75rem 2rem;
+    }
+
+    #title {
+        text-align: left;
+        font-size: 2.2rem;
+    }
+
+    #nav {
+        justify-content: flex-end;
+        gap: 2rem;
+        font-size: 1rem;
+    }
+
+    #content {
+        margin-top: 4.5rem;
+        font-size: 1.3rem;
+    }
+
+    .dropContent {
+        min-width: 12rem;
+    }
+}
